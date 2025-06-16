@@ -7,7 +7,7 @@
     <p class="mb-6">{{ $mission->description }}</p>
 
     <h3 class="text-lg font-semibold mb-2">Submit Bukti Misi</h3>
-    <form action="{{ route('eco-journey.submit', $mission->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('eco-journey.submit', $mission->id ,false ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
             <label for="photo" class="block text-sm font-medium">Foto Bukti</label>

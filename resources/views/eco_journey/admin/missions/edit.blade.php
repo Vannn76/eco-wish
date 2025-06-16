@@ -4,7 +4,7 @@
 <div class="max-w-xl mx-auto mt-10 px-4">
     <h2 class="text-2xl font-bold mb-6 text-green-700">Edit Misi</h2>
 
-    <form action="{{ route('admin.missions.update', $mission->id) }}" method="POST">
+    <form action="{{ route('admin.missions.update', $mission->id,false) }}" method="POST">
         @csrf
         @method('PUT')
 

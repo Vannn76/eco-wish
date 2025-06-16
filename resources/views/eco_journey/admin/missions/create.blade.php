@@ -4,7 +4,7 @@
 <div class="max-w-2xl mx-auto mt-8">
     <h2 class="text-2xl font-bold mb-4">Tambah Misi Harian</h2>
 
-    <form action="{{ route('admin.missions.store') }}" method="POST">
+    <form action="{{ route('admin.missions.store',[],false) }}" method="POST">
         @csrf
         <div class="mb-4">
             <label class="block font-semibold">Judul Misi</label>
