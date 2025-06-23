@@ -81,23 +81,23 @@
                 <div class="bg-gray-50 p-3 rounded">
 
                     <div class="flex items-center">
-                        <div class="text-sm text-gray-700 font-semibold">{{ $comment->user->name }}</div>
+                        <div class="text-sm text-gray-700 font-semibold">{{ $reply->user->name }}</div>
                         {{-- Badge: Pembuat Konten --}}
-                        @if($comment->user_id === $content->user_id)
+                        @if($reply->user_id === $content->user_id)
                         <span
                             class="text-blue-600 text-xs font-medium bg-blue-100 px-2 py-0.5 rounded-full">Pembuat</span>
                         @endif
 
                         {{-- Badge: Admin --}}
-                        @if($comment->user->is_admin)
+                        @if($reply->user->is_admin)
                         <span class="text-red-600 text-xs font-medium bg-red-100 px-2 py-0.5 rounded-full">Admin</span>
                         @endif
                     </div>
                     <p class="mt-1 text-sm text-gray-800">{{ $reply->body }}</p>
-                    <div class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</div>
+                    <div class="text-xs text-gray-400">{{ $reply->created_at->diffForHumans() }}</div>
                     @auth
-                    @if(auth()->user()->is_admin || auth()->id() === $comment->user_id)
-                    <button wire:click="deleteComment({{ $comment->id }})"
+                    @if(auth()->user()->is_admin || auth()->id() === $reply->user_id)
+                    <button wire:click="deleteReplyComment({{ $reply->id }})"
                         onclick="return confirm('Yakin ingin menghapus komentar ini?')"
                         class="text-xs text-red-600 hover:underline">Hapus</button>
                     @endif

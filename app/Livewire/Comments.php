@@ -65,4 +65,26 @@ class Comments extends Component
             abort(403, 'Tidak diizinkan');
         }
     }
+
+    public function deleteReplyComment($commentId)
+    {
+        $comment = Comment::find($commentId);
+
+        // Pastikan comment itu ada, dan merupakan reply (punya parent_id)
+        if ($comment && $comment->parent_id !== null) {
+            // Cek kepemilikan atau admin (opsional)
+            if (auth()->user()->is_admin || auth()->id() === $comment->user_id) {
+                $comment->delete();
+                session()->flash('success', 'Balasan komentar berhasil dihapus.');
+            } else {
+                session()->flash('error', 'Kamu tidak memiliki izin untuk menghapus balasan ini.');
+            }
+        } else {
+            session()->flash('error', 'Balasan tidak ditemukan atau bukan balasan.');
+        }
+
+        // Refresh komentar
+        $this->loadComments(); // Sesuaikan dengan method untuk reload komentar
+    }
+
 }
