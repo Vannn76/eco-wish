@@ -29,10 +29,16 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            $request->session()->regenerate();
             // Cek apakah ada redirect_to dari URL login
-            $redirectTo = $request->input('redirect_to') ?? url()->previous();
+            $redirectTo = $request->input('redirect_to');
 
-            return redirect()->to($redirectTo ?: '/');
+            // Hanya redirect kalau URL-nya internal (menghindari open redirect attack)
+            if ($redirectTo && str_starts_with($redirectTo, url('/'))) {
+                return redirect()->to($redirectTo);
+            }
+
+            return redirect('/'); // Default ke dashboard
         }
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
