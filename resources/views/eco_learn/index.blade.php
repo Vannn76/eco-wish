@@ -23,7 +23,8 @@
 
     @guest
     <div class="flex justify-end mb-4">
-        <a href="login" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
+        <a href="{{ route('login') }}?redirect_to={{ urlencode(request()->fullUrl()) }}"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
             + Tambah Konten Edukasi
         </a>
     </div>

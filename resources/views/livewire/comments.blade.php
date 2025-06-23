@@ -16,7 +16,8 @@
     </form>
     @else
     <div class="text-center text-sm text-gray-500 bg-yellow-100 border border-yellow-300 p-4 rounded mb-6">
-        <a href="{{ route('login') }}" class="font-semibold text-green-700 underline">Login</a> untuk memberikan
+        <a href="{{ route('login') }}?redirect_to={{ urlencode(request()->fullUrl()) }}"
+            class="font-semibold text-green-700 underline">Login</a> untuk memberikan
         komentar.
     </div>
     @endauth
