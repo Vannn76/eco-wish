@@ -19,6 +19,7 @@
     }
     </style>
 
+    @livewireStyles
 
 
 </head>
@@ -39,7 +40,11 @@
                     class="nav-link hover:text-green-600  {{ request()->is('eco-learn*') ? 'text-green-600 font-bold' : '' }}">
                     <i class="fas fa-book-open mr-1"></i> Eco Learn
                 </a>
-                <a href="/eco-journey"
+                <a href="/eco-games"
+                    class="nav-link hover:text-green-600  {{ request()->is('eco-games*') ? 'text-green-600 font-bold' : '' }}">
+                    <i class="fas fa-gamepad mr-1"></i> Eco Games
+                </a>
+                <!-- <a href="/eco-journey"
                     class="nav-link hover:text-green-600  {{ request()->is('eco-journey*') ? 'text-green-600 font-bold' : '' }}">
                     <i class="fas fa-leaf mr-1"></i> Eco Journey
                 </a>
@@ -50,7 +55,7 @@
                 <a href="/eco-circle"
                     class="nav-link hover:text-green-600 {{ request()->is('eco-circle*') ? 'text-green-600 font-bold' : '' }}">
                     <i class="fas fa-users mr-1"></i> Eco Circle
-                </a>
+                </a> -->
 
                 @auth
                 @if(auth()->user()->is_admin)
@@ -69,13 +74,15 @@
 
                     <div x-show="open" x-transition x-cloak @click.outside="open = false"
                         class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow z-50 py-2">
+                        <a href="/admin/users" class="block px-4 py-2 text-sm hover:bg-gray-100">Kelola Users</a>
+                        <a href="/admin/games" class="block px-4 py-2 text-sm hover:bg-gray-100">Kelola Games</a>
                         <a href="/admin/eco-learn" class="block px-4 py-2 text-sm hover:bg-gray-100">Verifikasi
                             Konten</a>
-                        <a href="/admin/eco-journey/missions"
+                        <!-- <a href="/admin/eco-journey/missions"
                             class="block px-4 py-2 text-sm hover:bg-gray-100">Tambah/edit
                             Misi</a>
                         <a href="/admin/eco-journey/submissions"
-                            class="block px-4 py-2 text-sm hover:bg-gray-100">Verifikasi Misi</a>
+                            class="block px-4 py-2 text-sm hover:bg-gray-100">Verifikasi Misi</a> -->
                     </div>
                 </div>
                 @endif
@@ -145,7 +152,12 @@
                 <i class="fas fa-book-open text-lg mb-1"></i>
                 <span>EcoLearn</span>
             </a>
-            <a href="/eco-journey"
+            <a href="/eco-games"
+                class="flex flex-col items-center py-2 w-full hover:text-green-600 {{ request()->is('eco-games*') ? 'text-green-600 font-semibold' : '' }}">
+                <i class="fas fa-gamepad text-lg mb-1"></i>
+                <span>EcoGames</span>
+            </a>
+            <!-- <a href="/eco-journey"
                 class="flex flex-col items-center py-2 w-full hover:text-green-600 {{ request()->is('eco-journey*') ? 'text-green-600 font-semibold' : '' }}">
                 <i class="fas fa-leaf text-lg mb-1"></i>
                 <span>EcoJourney</span>
@@ -159,7 +171,7 @@
                 class="flex flex-col items-center py-2 w-full hover:text-green-600 {{ request()->is('eco-circle*') ? 'text-green-600 font-semibold' : '' }}">
                 <i class="fas fa-users text-lg mb-1"></i>
                 <span>EcoCircle</span>
-            </a>
+            </a> -->
             {{-- Admin Dropdown - Mobile View --}}
             @auth
             @if(auth()->user()->is_admin)
@@ -193,6 +205,20 @@
                     </div>
 
                     <div class="py-2">
+                        <a href="/admin/users" class="admin-menu-item">
+                            <i class="fas fa-users admin-menu-icon text-green-500"></i>
+                            <div class="border-b mb-3">
+                                <div class="font-medium">Kelola Users</div>
+                                <div class="text-xs text-gray-500">Users management</div>
+                            </div>
+                        </a>
+                        <a href="/admin/games" class="admin-menu-item">
+                            <i class="fas fa-gamepad admin-menu-icon text-blue-800"></i>
+                            <div class="border-b mb-3">
+                                <div class="font-medium">Kelola Games</div>
+                                <div class="text-xs text-gray-500">Games management</div>
+                            </div>
+                        </a>
                         <a href="/admin/eco-learn" class="admin-menu-item">
                             <i class="fas fa-check-circle admin-menu-icon text-blue-500"></i>
                             <div class="border-b mb-3">
@@ -201,21 +227,21 @@
                             </div>
                         </a>
 
-                        <a href="/admin/eco-journey/missions" class="admin-menu-item">
+                        <!-- <a href="/admin/eco-journey/missions" class="admin-menu-item">
                             <i class="fas fa-plus-circle admin-menu-icon text-green-500"></i>
                             <div class="border-b mb-3">
                                 <div class="font-medium">Kelola Misi</div>
                                 <div class="text-xs text-gray-500">Tambah/edit misi harian</div>
                             </div>
-                        </a>
+                        </a> -->
 
-                        <a href="/admin/eco-journey/submissions" class="admin-menu-item">
+                        <!-- <a href="/admin/eco-journey/submissions" class="admin-menu-item">
                             <i class="fas fa-clipboard-check admin-menu-icon text-purple-500"></i>
                             <div class="border-b mb-3">
                                 <div class="font-medium">Verifikasi Misi</div>
                                 <div class="text-xs text-gray-500">Review submission user</div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -227,6 +253,7 @@
     </nav>
 
     @stack('scripts')
+    @livewireScripts
 </body>
 
 </html>

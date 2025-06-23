@@ -21,4 +21,15 @@ class EcoLearnContent extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'eco_learn_content_id')->whereNull('parent_id')->latest();
+    }
+    public function allComments()
+    {
+        return $this->hasMany(Comment::class, 'eco_learn_content_id')->latest();
+    }
+
+
 }

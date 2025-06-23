@@ -5,6 +5,9 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto px-4 py-10">
+    <a href="/eco-learn"
+        class="text-sm px-4 py-2 absolute right-5 md:right-92 bg-green-600 hover:bg-green-700 rounded text-white">←
+        Kembali</a>
     <h1 class="text-2xl font-bold text-green-700 mb-4">{{ $content->title }}</h1>
     <p class="text-sm text-gray-500 mb-2">Dibuat oleh: {{ $content->user->name }}</p>
     <p class="text-sm text-gray-400 mb-4">Tanggal dibuat: {{ $content->created_at->format('d M Y') }}</p>
@@ -35,6 +38,15 @@
     </div>
 
     @endif
+
+    <hr class="my-10 border-gray-300">
+
+    <h2 class="text-xl font-semibold mb-4">Komentar</h2>
+
+    <livewire:comments :content="$content" />
+
+
+
 
 </div>
 @endsection
